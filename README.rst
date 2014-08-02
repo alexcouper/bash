@@ -31,3 +31,10 @@ This provides a pip-installable, tested shortcut to writing:
     p = Popen(cmd, shell=True, stdout=PIPE, stdin=PIPE, stderr=PIPE)
     output, err = p.communicate()
 
+
+Support + Contributing
+----------------------
+
+Feel free to make pull requests, or report issues via the repo:
+
+https://github.com/alexcouper/bash

@@ -1,1 +1,4 @@
 *.pyc
+bash.egg-info
+dist/
+.tox/
