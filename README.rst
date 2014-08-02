@@ -1,7 +1,7 @@
 bash for python
 ===============
 
-A library that enables easy running and concatonation of bash commands in
+A library that enables easy running and concatenation of bash commands in
 python
 
 Installation
