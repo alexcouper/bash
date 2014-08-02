@@ -24,8 +24,11 @@ class TestBash(unittest.TestCase):
     def test_bash_stderr(self):
         result = bash('./missing_command')
         self.assertEquals(result.stdout, b'')
-        self.assertEquals(
-            result.stderr,
-            b'/bin/sh: ./missing_command: No such file or directory\n')
+        self.assertTrue(result.stderr in [
+            # Mac OSX
+            b'/bin/sh: ./missing_command: No such file or directory\n',
+            # Travis
+            b'/bin/sh: 1: ./missing_command: not found\n'
+        ])
         self.assertEquals(result.code, 127)
 
