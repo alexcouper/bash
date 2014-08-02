@@ -6,12 +6,13 @@ class bash(object):
 
     def __init__(self, cmd):
         self.p = None
-        self.output = None
+        self.stdout = None
         self.bash(cmd)
 
     def bash(self, cmd):
         self.p = Popen(cmd, shell=True, stdout=PIPE, stdin=PIPE, stderr=PIPE)
-        self.output, self.err = self.p.communicate(input=self.output)
+        self.stdout, self.stderr = self.p.communicate(input=self.stdout)
+        self.code = self.p.returncode
         return self
 
     def __repr__(self):
@@ -30,4 +31,4 @@ class bash(object):
         return bool(self.value())
 
     def value(self):
-        return self.output.strip().decode(encoding='UTF-8')
+        return self.stdout.strip().decode(encoding='UTF-8')
