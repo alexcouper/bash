@@ -32,3 +32,6 @@ class TestBash(unittest.TestCase):
         ])
         self.assertEquals(result.code, 127)
 
+    def test_passing_env(self):
+        result = bash('echo $NAME', env={'NAME': 'Fred'})
+        self.assertEquals(result.stdout, b'Fred\n')

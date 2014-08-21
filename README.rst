@@ -83,6 +83,13 @@ that this library is **NOT** suitable for running untrusted commands.
 `(See explanation) <https://docs.python.org/2/library/subprocess.html#frequently-used-arguments>`_
 
 
+Running the tests
+-----------------
+
+Simply use a test runner.
+
+    $ nosetests
+
 Support + Contributing
 ----------------------
 
