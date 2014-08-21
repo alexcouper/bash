@@ -7,7 +7,7 @@ long_description = open('README.rst').read()
 setup(
     name='bash',
     description='Bash for Python',
-    version='0.1',
+    version='0.2',
     long_description=long_description,
     author='Alex Couper',
     author_email='info@alexcouper.com',

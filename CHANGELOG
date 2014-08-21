@@ -1,0 +1,9 @@
+0.2
+---
+
+Ability to pass in env overrides when running commands.
+
+0.1
+---
+
+Ability to run and chain commands.
