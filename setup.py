@@ -2,7 +2,8 @@
 # # coding: utf-8
 from setuptools import find_packages, setup
 
-long_description = open('README.rst').read()
+with open('README.rst') as readme:
+    long_description = readme.read()
 
 setup(
     name='bash',
