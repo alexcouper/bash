@@ -6,32 +6,32 @@ class TestBash(unittest.TestCase):
 
     def test_bash_concatenation_by_method(self):
         result = bash('ls .').bash('grep "tests.py$"').value()
-        self.assertEquals(result, 'tests.py')
+        self.assertEqual(result, 'tests.py')
 
     def test_bash_concatenation_within_command(self):
         result = bash('ls . | grep "tests.py$"').value()
-        self.assertEquals(result, 'tests.py')
+        self.assertEqual(result, 'tests.py')
 
     def test_bash_repr(self):
         result = bash('ls . | grep "tests.py$"')
-        self.assertEquals(repr(result), 'tests.py')
+        self.assertEqual(repr(result), 'tests.py')
 
     def test_bash_stdout(self):
         result = bash('ls . | grep "tests.py$"')
-        self.assertEquals(result.stdout, b'tests.py\n')
-        self.assertEquals(result.code, 0)
+        self.assertEqual(result.stdout, b'tests.py\n')
+        self.assertEqual(result.code, 0)
 
     def test_bash_stderr(self):
         result = bash('./missing_command')
-        self.assertEquals(result.stdout, b'')
+        self.assertEqual(result.stdout, b'')
         self.assertTrue(result.stderr in [
             # Mac OSX
             b'/bin/sh: ./missing_command: No such file or directory\n',
             # Travis
             b'/bin/sh: 1: ./missing_command: not found\n'
         ])
-        self.assertEquals(result.code, 127)
+        self.assertEqual(result.code, 127)
 
     def test_passing_env(self):
         result = bash('echo $NAME', env={'NAME': 'Fred'})
-        self.assertEquals(result.stdout, b'Fred\n')
+        self.assertEqual(result.stdout, b'Fred\n')
