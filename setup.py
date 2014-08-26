@@ -8,7 +8,7 @@ with open('README.rst') as readme:
 setup(
     name='bash',
     description='Bash for Python',
-    version='0.2',
+    version='0.3.1',
     long_description=long_description,
     author='Alex Couper',
     author_email='info@alexcouper.com',

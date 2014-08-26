@@ -35,3 +35,10 @@ class TestBash(unittest.TestCase):
     def test_passing_env(self):
         result = bash('echo $NAME', env={'NAME': 'Fred'})
         self.assertEqual(result.stdout, b'Fred\n')
+
+    def test_output_to_stdout(self):
+        b = bash('ls .', stdout=None)
+        self.assertEqual(str(b), '')
+        # Shouldn't find anything because we haven't piped it.
+        self.assertEqual(str(b.bash('grep setup')), '')
+
