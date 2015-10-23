@@ -8,7 +8,7 @@ with open('README.rst') as readme:
 setup(
     name='bash',
     description='Bash for Python',
-    version='0.3.1',
+    version='0.4',
     long_description=long_description,
     author='Alex Couper',
     author_email='info@alexcouper.com',
@@ -22,8 +22,8 @@ setup(
         'Operating System :: MacOS',
         'Operating System :: POSIX',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
 )

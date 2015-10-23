@@ -1,3 +1,10 @@
+0.4
+---
+
+Introduce subprocess32 use if available for timeout use.
+Removed support for python 3.2
+Added support for python 3.5
+
 0.3.1
 -----
 

@@ -1,6 +1,16 @@
 import unittest
 
+try:
+    from subprocess import TimeoutExpired
+except ImportError:
+    try:
+        from subprocess32 import TimeoutExpired
+    except ImportError:
+        pass
+
+import bash as bash_module
 from bash import bash
+
 
 class TestBash(unittest.TestCase):
 
@@ -42,3 +52,7 @@ class TestBash(unittest.TestCase):
         # Shouldn't find anything because we haven't piped it.
         self.assertEqual(str(b.bash('grep setup')), '')
 
+    def test_timeout_works(self):
+        if not bash_module.SUBPROCESS_HAS_TIMEOUT:
+            raise unittest.SkipTest()
+        self.assertRaises(TimeoutExpired, bash, 'sleep 2; echo 1', timeout=1)
