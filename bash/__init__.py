@@ -1,4 +1,13 @@
+import sys
 from subprocess import PIPE, Popen
+SUBPROCESS_HAS_TIMEOUT = True
+if sys.version_info < (3, 0):
+    try:
+        from subprocess32 import PIPE, Popen  #NOQA
+    except ImportError:
+        # You haven't got subprocess32 installed. If you're running 2.X this
+        # will mean you don't have access to things like timeout
+        SUBPROCESS_HAS_TIMEOUT = False
 
 
 class bash(object):
@@ -9,11 +18,19 @@ class bash(object):
         self.stdout = None
         self.bash(*args, **kwargs)
 
-    def bash(self, cmd, env=None, stdout=PIPE):
+    def bash(self, cmd, env=None, stdout=PIPE, timeout=None):
         self.p = Popen(
             cmd, shell=True, stdout=stdout, stdin=PIPE, stderr=PIPE, env=env
         )
-        self.stdout, self.stderr = self.p.communicate(input=self.stdout)
+        kwargs = {'input': self.stdout}
+        if timeout:
+            kwargs['timeout'] = timeout
+            if not SUBPROCESS_HAS_TIMEOUT:
+                raise ValueError(
+                    "Timeout given but subprocess doesn't support it. "
+                    "Install subprocess32 and try again."
+                )
+        self.stdout, self.stderr = self.p.communicate(**kwargs)
         self.code = self.p.returncode
         return self
 
