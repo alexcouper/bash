@@ -18,9 +18,9 @@ class bash(object):
         self.stdout = None
         self.bash(*args, **kwargs)
 
-    def bash(self, cmd, env=None, stdout=PIPE, timeout=None):
+    def bash(self, cmd, env=None, stdout=PIPE, stderr=PIPE, timeout=None):
         self.p = Popen(
-            cmd, shell=True, stdout=stdout, stdin=PIPE, stderr=PIPE, env=env
+            cmd, shell=True, stdout=stdout, stdin=PIPE, stderr=stderr, env=env
         )
         kwargs = {'input': self.stdout}
         if timeout:
