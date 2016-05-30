@@ -1,3 +1,8 @@
+0.6
+---
+
+Add `sync` argument to be able to run bash in non-blocking form
+
 0.5
 ---
 

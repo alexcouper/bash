@@ -1,3 +1,4 @@
+from datetime import datetime
 import unittest
 
 try:
@@ -56,3 +57,12 @@ class TestBash(unittest.TestCase):
         if not bash_module.SUBPROCESS_HAS_TIMEOUT:
             raise unittest.SkipTest()
         self.assertRaises(TimeoutExpired, bash, 'sleep 2; echo 1', timeout=1)
+
+    def test_sync_false_does_not_wait(self):
+        t1 = datetime.now()
+        b = bash('sleep 0.5; echo 1', sync=False)
+        t2 = datetime.now()
+
+        self.assertTrue((t2-t1).total_seconds() < 0.5)
+        b.sync()
+        self.assertEqual(b.stdout, b'1\n')
